@@ -28,3 +28,21 @@
 # 1 <= words.length <= 100
 # 1 <= words[i].length <= 100
 # words[i] consists only of lowercase English letters.
+
+
+class Solution:
+    def palindCheck(self, word):
+        i, j = 0, len(word) - 1
+        while i < j:
+            if word[i] == word[j]:
+                i += 1
+                j -= 1
+            else:
+                return False
+        return True
+
+    def firstPalindrome(self, words):
+        for word in words:
+            if self.palindCheck(word):
+                return word
+        return ""
