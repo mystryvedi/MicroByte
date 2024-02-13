@@ -28,3 +28,33 @@
 // 1 <= words.length <= 100
 // 1 <= words[i].length <= 100
 // words[i] consists only of lowercase English letters.
+
+
+class Solution {
+public:
+    bool palindCheck(string &word)
+    {
+        int i = 0,j = word.size() - 1;
+        while(i < j)
+        {if(word[i] == word[j])
+        {
+            i++;
+            j--;
+        }
+        else{
+            return false;
+        }
+        }
+        return true;
+    }
+    string firstPalindrome(vector<string>& words) {
+        for(auto i : words){
+            if(palindCheck(i))
+            {
+                return i;
+            }
+        }
+
+        return "";
+    }
+};
