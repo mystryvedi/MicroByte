@@ -36,3 +36,28 @@
 // 3 <= n <= 105
 // 1 <= nums[i] <= 109
 
+class Solution {
+public:
+    long long largestPerimeter(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        int j=n-1;
+        int i=0;
+        long long sum=0;
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+
+        }
+        while(i<=j){
+            sum-=nums[j];
+            if(sum>nums[j]){
+                return sum+=nums[j];
+            }
+            else{
+                j--;
+                i++;
+            }
+        }
+        return -1;
+    }
+};
