@@ -36,3 +36,16 @@
 # 3 <= n <= 105
 # 1 <= nums[i] <= 109
 
+
+class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        nums.sort(reverse = True)
+        suffix , c = [] , 0
+        for i in range(len(nums)-1,-1,-1):
+            c += nums[i]
+            suffix.insert(0,c)
+        for i in range(len(nums)-1):
+            if suffix[i+1] > nums[i]:
+                if len(suffix[i:]) >= 3:
+                    return suffix[i]
+        return -1
