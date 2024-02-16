@@ -21,3 +21,23 @@
 # 1 <= arr[i] <= 10^9
 # 0 <= k <= arr.length
 
+class Solution:
+    def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
+        d = {}
+        for i in arr:
+            if i not in d:
+                d[i] = 1
+            else:
+                d[i] += 1
+        l = sorted(d.items(), key = lambda x:x[1])
+        for i in range(len(l)):
+            if k<=0:
+                break
+            else:
+                d[l[i][0]]-=k
+                k-=l[i][1]
+        count = 0
+        for i in d:
+            if d[i]>0:
+                count+=1
+        return count
