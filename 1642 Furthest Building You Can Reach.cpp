@@ -40,3 +40,51 @@
 // 0 <= bricks <= 109
 // 0 <= ladders <= heights.length
 
+class Solution {
+public:
+    
+    bool possible( int mid , int bricks , int ladders , vector<int>&heights)
+    {
+         priority_queue<int,vector<int>,greater<int>>pq;
+
+         for( int i = 1 ; i <= mid ; i++)
+         {
+             if(heights[i]-heights[i-1] > 0)
+             {
+                 pq.push(heights[i]-heights[i-1]);
+             }
+         }
+
+         while(pq.empty() == false)
+         {
+             if(pq.top() > bricks) break;
+             
+             bricks -= pq.top();
+             pq.pop();
+         }
+
+         if(pq.size() <= ladders) return true;
+         return false;
+    }
+    int furthestBuilding(vector<int>& heights, int bricks, int ladders) {
+        
+        int start = 0;
+        int end = heights.size()-1;
+
+        while( start < end)
+        {
+            int mid = start + ( end- start + 1)/2;
+
+            if(possible( mid , bricks , ladders , heights) == true)
+            {
+                start = mid;
+            }
+            else
+            {
+                end = mid - 1;
+            }
+        }
+
+        return start;
+    }
+};
