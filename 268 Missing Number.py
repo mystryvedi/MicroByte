@@ -27,3 +27,8 @@
 # 1 <= n <= 104
 # 0 <= nums[i] <= n
 # All the numbers of nums are unique.
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        return len(nums) * (len(nums) + 1) // 2 - sum(nums)
+    
