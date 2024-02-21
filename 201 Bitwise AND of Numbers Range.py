@@ -19,3 +19,19 @@
 # Constraints:
 
 # 0 <= left <= right <= 231 - 1
+
+class Solution:
+    def rangeBitwiseAnd(self, left: int, right: int) -> int:
+        if right-left==1: return left&right
+        if left==right:return left
+        a=bin(left)[2:]
+        b=bin(right)[2:]
+        if len(a)==len(b):
+            s=''
+            for i in range(len(a)):
+                if a[i]==b[i]:
+                    s+=a[i]
+                else:break
+            s+='0'*(len(a)-i)
+            return int(s,2)
+        return 0
