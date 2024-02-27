@@ -24,3 +24,18 @@
 
 # The number of nodes in the tree is in the range [1, 104].
 # -100 <= Node.val <= 100
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        def dd(n, cd):
+            if not n: return (cd - 1, 0)
+            depthl, diameterl = dd(n.left, cd + 1)
+            depthr, diameterr = dd(n.right, cd + 1)
+            return (max(depthl, depthr), max(diameterl, diameterr, depthl + depthr - 2 * cd))
+        return dd(root, 0)[1]
