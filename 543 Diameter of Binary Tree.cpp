@@ -24,3 +24,35 @@
 
 // The number of nodes in the tree is in the range [1, 104].
 // -100 <= Node.val <= 100
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution 
+{
+public:
+    int diameterOfBinaryTree(TreeNode* root) 
+    {
+        int ans = 0;
+        getDiameter(root, ans);
+        return ans-1;
+    }
+    int getDiameter(TreeNode* root, int& ans)
+    {
+
+        if(root == NULL)    return 0;
+        int left = getDiameter(root -> left, ans);
+        int right = getDiameter(root -> right, ans);
+        ans = max(ans, left + right + 1);
+        return max(left, right)+1;
+
+    }
+};
