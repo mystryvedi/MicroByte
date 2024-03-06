@@ -38,3 +38,12 @@
 
 # 1 <= s.length <= 105
 # s only consists of characters 'a', 'b', and 'c'.
+
+class Solution:
+    def minimumLength(self, s: str) -> int:
+        i,j=0,len(s)-1
+        while len(s)>1 and s[i]==s[j]:
+            s=s.strip(s[i])
+            i,j=0,len(s)-1
+        return len(s)
+        
