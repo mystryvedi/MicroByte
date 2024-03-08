@@ -6,8 +6,6 @@
 
 # The frequency of an element is the number of occurrences of that element in the array.
 
- 
-
 # Example 1:
 
 # Input: nums = [1,2,2,3,1,4]
@@ -19,10 +17,29 @@
 # Input: nums = [1,2,3,4,5]
 # Output: 5
 # Explanation: All elements of the array have a frequency of 1 which is the maximum.
-# So the number of elements in the array with maximum frequency is 5.
- 
+# So the number of elements in the array with maximum frequency is 5. 
 
 # Constraints:
 
 # 1 <= nums.length <= 100
 # 1 <= nums[i] <= 100
+
+class Solution(object):
+    def maxFrequencyElements(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        freq_map = {}
+        max_freq = 0
+
+        for num in nums:
+            freq_map[num] = freq_map.get(num, 0) + 1
+            max_freq = max(max_freq, freq_map[num])
+
+        count = 0
+        for freq in freq_map.values():
+            if freq == max_freq:
+                count += 1
+
+        return count * max_freq
