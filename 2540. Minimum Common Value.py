@@ -4,8 +4,6 @@
 
 # Note that an integer is said to be common to nums1 and nums2 if both arrays have at least one occurrence of that integer.
 
- 
-
 # Example 1:
 
 # Input: nums1 = [1,2,3], nums2 = [2,4]
@@ -23,3 +21,7 @@
 # 1 <= nums1.length, nums2.length <= 105
 # 1 <= nums1[i], nums2[j] <= 109
 # Both nums1 and nums2 are sorted in non-decreasing order
+
+class Solution:
+    def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
+        return min(set(nums1) & set(nums2), default=-1)
