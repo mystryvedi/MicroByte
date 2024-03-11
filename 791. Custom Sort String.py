@@ -36,3 +36,15 @@
 # 1 <= s.length <= 200
 # order and s consist of lowercase English letters.
 # All the characters of order are unique.
+
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+
+            a=""
+            for i in order:
+                c=s.count(i)
+                a+=i*c
+            for i in s:
+                if (i not in a):
+                    a+=i*s.count(i)
+            return a
