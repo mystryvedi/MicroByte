@@ -5,8 +5,6 @@
 # The sum of all elements between 1 and x inclusively equals the sum of all elements between x and n inclusively.
 # Return the pivot integer x. If no such integer exists, return -1. It is guaranteed that there will be at most one pivot index for the given input.
 
- 
-
 # Example 1:
 
 # Input: n = 8
@@ -23,7 +21,17 @@
 # Output: -1
 # Explanation: It can be proved that no such integer exist.
  
-
 # Constraints:
 
 # 1 <= n <= 1000
+
+class Solution:
+    def pivotInteger(self, n: int) -> int:
+        sum = n * (n + 1) // 2
+        a = math.sqrt(sum)
+
+        if a - math.ceil(a) == 0:
+            return int(a)
+        else:
+            return -1
+        
