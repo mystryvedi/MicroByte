@@ -22,3 +22,22 @@
 
 # 1 <= nums.length <= 2 * 104
 # 1 <= nums[i], k <= nums.length
+
+class Solution:
+    def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:
+        def count_subarrays_at_most_k(k):
+            i = j = count = 0
+            freq = {}
+            while j < len(nums):
+                freq[nums[j]] = freq.get(nums[j], 0) + 1
+                while len(freq) > k:
+                    freq[nums[i]] -= 1
+                    if freq[nums[i]] == 0:
+                        del freq[nums[i]]
+                    i += 1
+                count += (j - i + 1)  
+                j += 1
+            return count
+        count_k = count_subarrays_at_most_k(k)
+        count_k_minus_1 = count_subarrays_at_most_k(k - 1)
+        return count_k - count_k_minus_1
