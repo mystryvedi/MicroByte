@@ -18,3 +18,26 @@
 
 # The number of nodes in the tree is in the range [1, 1000].
 # -1000 <= Node.val <= 1000
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        ans = 0
+
+        def dfs(root):
+            nonlocal ans
+            if not root:
+                return
+
+            if root.left and not root.left.left and not root.left.right:
+                ans+=root.left.val
+            dfs(root.left)
+            dfs(root.right)
+
+        dfs(root)
+        return ans        
