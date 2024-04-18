@@ -27,3 +27,19 @@
 # 1 <= row, col <= 100
 # grid[i][j] is 0 or 1.
 # There is exactly one island in grid.
+
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        perimeter = 0
+        rows, cols = len(grid), len(grid[0])
+        
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == 1:
+                    perimeter += 4
+                    if r > 0 and grid[r-1][c] == 1:
+                        perimeter -= 2
+                    if c > 0 and grid[r][c-1] == 1:
+                        perimeter -= 2
+                        
+        return perimeter
