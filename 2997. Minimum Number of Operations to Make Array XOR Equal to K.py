@@ -29,3 +29,9 @@
 # 1 <= nums.length <= 105
 # 0 <= nums[i] <= 106
 # 0 <= k <= 106
+
+class Solution:
+    def minOperations(self, nums: List[int], k: int) -> int:
+        return reduce(lambda x, im: (x & im[1]) + ((x & ~im[1]) >> (1 << im[0])),
+                      enumerate([0b01010101010101010101010101010101, 0b00110011001100110011001100110011, 0b00001111000011110000111100001111, 0b00000000111111110000000011111111, 0b00000000000000001111111111111111]),
+                      reduce(operator.xor, nums, k))
