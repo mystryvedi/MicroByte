@@ -24,3 +24,16 @@
 
 # 1 <= people.length <= 5 * 104
 # 1 <= people[i] <= limit <= 3 * 104
+
+class Solution:
+    def numRescueBoats(self, p: List[int], limit: int) -> int:
+        p.sort()
+        x=0
+        l, r=0, len(p)-1
+        while l<=r:
+            x+=1
+            if p[l]+p[r]<=limit:
+                l+=1
+            r-=1
+        return x
+        
