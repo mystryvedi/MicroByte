@@ -24,3 +24,22 @@
 # -231 <= nums[i] <= 231 - 1
 # Each integer in nums will appear twice, only two integers will appear once.
 
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        result = [0, 0]
+        index = 0
+
+        for i in range(n):
+            found = False
+            for j in range(n):
+                if i != j and nums[i] == nums[j]:
+                    found = True
+                    break
+            if not found:
+                result[index] = nums[i]
+                index += 1
+                if index == 2:
+                    break
+
+        return result
